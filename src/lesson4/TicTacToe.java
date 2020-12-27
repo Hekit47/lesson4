@@ -56,18 +56,55 @@ public class TicTacToe {
 
     private static boolean checkWin (char symbol){ //переписать циклами, для строк, столбцов и диагоналей отдельно
         //проверяем победу по строкам
-        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) return true;
-        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) return true;
-        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) return true;
+
+        for (int rowIndex = 0; rowIndex < SIZE; rowIndex++) {
+            int stringCol = 0;
+            for (int colIndex = 0; colIndex < SIZE; colIndex++) {
+                if (map[rowIndex][colIndex] == symbol) {
+                    stringCol++;
+                }
+            } if (stringCol == SIZE) return true;
+        }
+
+//        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) return true;
+//        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) return true;
+//        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) return true;
 
         //проверяем победу по столбцам
-        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) return true;
-        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) return true;
-        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) return true;
 
-        //проверяем диагонали
-        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) return true;
-        if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) return true;
+        for (int colIndex = 0; colIndex < SIZE; colIndex++) {
+            int stringCol = 0;
+            for (int rowIndex = 0; rowIndex < SIZE; rowIndex++) {
+                if (map[rowIndex][colIndex] == symbol) {
+                    stringCol++;
+                }
+            }
+            if (stringCol == SIZE) return true;
+        }
+
+//        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) return true;
+//        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) return true;
+//        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) return true;
+
+        //проверяем правую диагональ
+        int stringCol = 0;
+        for (int index = 0; index < SIZE; index++) {
+            if (map[index][index] == symbol){
+                stringCol ++;
+            }
+        }
+        if (stringCol == SIZE) return true;
+        //проверяем левую диагональ
+        stringCol = 0;
+        int colIndex = SIZE - 1;
+        for (int rowIndex = SIZE - 1; rowIndex >= 0; rowIndex-- ) {
+            if (map[rowIndex][colIndex] == symbol){
+                stringCol ++;
+            } colIndex--;
+        }
+        if (stringCol == SIZE) return true;
+//        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) return true;
+//        if (map[0][2] == symbol && map[1][1] == symbol && map[2][0] == symbol) return true;
 
         return false;
     }
