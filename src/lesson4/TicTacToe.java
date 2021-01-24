@@ -1,22 +1,23 @@
 package lesson4;
 
-import com.sun.prism.shader.Solid_ImagePattern_Loader;
-
 import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
 
-    private static final int SIZE = 3; // final означает, что поле меняться больше не будет
-    private static final char[][] map = new char[SIZE][SIZE]; //создали статическую переменную чар, которая двумерный масси
+    protected static final int SIZE = 3; // final означает, что поле меняться больше не будет
+    protected static final char[][] map = new char[SIZE][SIZE]; //создали статическую переменную чар, которая двумерный масси
 
-    private static final char DOT_EMPTY ='•';
-    private static final char DOT_X = 'X';
-    private static final char DOT_0 = '0';
+    protected static final char DOT_EMPTY ='•';
+    protected static final char DOT_X = 'X';
+    protected static final char DOT_0 = '0';
 
     private static final Scanner SCANNER= new Scanner(System.in);
 
     public static void main(String[] args) { // инициализируем состояние нашей игры
+        GameWindow window = new GameWindow();
+        window.setTitle("TicTacToe"); // переименовал окно в крестикинолики
+
         intializeGame();                     //нажать Alt + Enter
         printMap();                          // создали метод, который будет выводить на экран
 
@@ -116,10 +117,10 @@ public class TicTacToe {
         System.out.println("Ваш ход!");//вызываем сканнер, который прочитает из консоли номер столбца
         do {
             //цикл ввода адреса ячейки
-            System.out.print("Введите номер строки: ");
+            System.out.print("Введите номер строки и столбца: ");
             rowIndex = SCANNER.nextInt() - 1;
 
-            System.out.print("Введите номер столбца: ");
+//            System.out.print("Введите номер столбца: ");
             colIndex = SCANNER.nextInt() - 1;
         } while (!isCellValid(rowIndex, colIndex, DOT_X)); //будет продолжаться, пока ячейка будет вне диапазона
 
